@@ -44,15 +44,16 @@ public class ModelService {
         }
     }
 
-    public Iterable<Model> filterByGrade(String grade) {
-        return modelRepository.findByGradeContains(grade);
-    }
-
-    public Iterable<Model> filterByName(String name) {
-        return modelRepository.findByNameContains(name);
-    }
-
-    public Iterable<Model> filterByLastName(String lastName) {
-        return modelRepository.findByLastNameContains(lastName);
+    public Iterable<Model> getFilteredModels(String filter, String field) {
+        switch (field.toLowerCase()) {
+            case "grade":
+                return modelRepository.findByGradeContains(filter);
+            case "name":
+                return modelRepository.findByNameContains(filter);
+            case "lastname":
+                return modelRepository.findByLastNameContains(filter);
+            default:
+                throw new IllegalArgumentException("Invalid field: " + field);
+        }
     }
 }

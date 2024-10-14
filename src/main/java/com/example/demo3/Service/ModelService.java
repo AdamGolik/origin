@@ -45,7 +45,6 @@ public class ModelService {
     }
 
     public Iterable<Model> getFilteredModels(String filter) {
-        // Implementacja filtrowania w repozytorium według specyficznych kryteriów
-        return modelRepository.findBySomeCriteria(filter);
+        return modelRepository.findByNameContains(filter);
     }
 }

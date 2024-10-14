@@ -19,7 +19,7 @@ public class ModelController {
     public ResponseEntity<Iterable<Model>> getAllModels(@RequestParam(required = false) String filter) {
         Iterable<Model> models;
         if (filter != null) {
-            models = modelService.getFilteredModels(filter); // Dodaj metodę w serwisie do filtrowania
+            models = modelService.getFilteredModels(filter);
         } else {
             models = modelService.getAllModels();
         }

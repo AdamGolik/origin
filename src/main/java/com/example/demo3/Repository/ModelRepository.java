@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface ModelRepository extends JpaRepository<Model, Long> {
 
-    @Query("SELECT m FROM Model m WHERE m.someField LIKE %:filter%")
-    List<Model> findBySomeCriteria(@Param("filter") String filter);
+    @Query("SELECT m FROM Model m WHERE m.name LIKE %:filter%")
+    List<Model> findByNameContains(@Param("filter") String filter);
 }

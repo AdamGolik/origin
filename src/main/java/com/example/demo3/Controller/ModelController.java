@@ -16,8 +16,13 @@ public class ModelController {
     private ModelService modelService;
 
     @GetMapping("/all")
-    public ResponseEntity<Iterable<Model>> getAllModels() {
-        Iterable<Model> models = modelService.getAllModels();
+    public ResponseEntity<Iterable<Model>> getAllModels(@RequestParam(required = false) String filter) {
+        Iterable<Model> models;
+        if (filter != null) {
+            models = modelService.getFilteredModels(filter); // Dodaj metodę w serwisie do filtrowania
+        } else {
+            models = modelService.getAllModels();
+        }
         return ResponseEntity.ok(models);
     }
 

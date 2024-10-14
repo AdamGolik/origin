@@ -44,7 +44,15 @@ public class ModelService {
         }
     }
 
-    public Iterable<Model> getFilteredModels(String filter) {
-        return modelRepository.findByNameContains(filter);
+    public Iterable<Model> filterByGrade(String grade) {
+        return modelRepository.findByGradeContains(grade);
+    }
+
+    public Iterable<Model> filterByName(String name) {
+        return modelRepository.findByNameContains(name);
+    }
+
+    public Iterable<Model> filterByLastName(String lastName) {
+        return modelRepository.findByLastNameContains(lastName);
     }
 }

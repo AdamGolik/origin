@@ -56,4 +56,23 @@ public class ModelController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/filter")
+    public ResponseEntity<Iterable<Model>> filterModels(@RequestParam String search, @RequestParam String field) {
+        Iterable<Model> models;
+        switch (field.toLowerCase()) {
+            case "grade":
+                models = modelService.filterByGrade(search);
+                break;
+            case "name":
+                models = modelService.filterByName(search);
+                break;
+            case "lastname":
+                models = modelService.filterByLastName(search);
+                break;
+            default:
+                return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(models);
+    }
 }

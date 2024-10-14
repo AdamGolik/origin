@@ -25,7 +25,7 @@ public class ModelController {
         }
         return ResponseEntity.ok(models);
     }
-
+//id
     @GetMapping("/{id}")
     public ResponseEntity<Model> getModelById(@PathVariable Long id) {
         Optional<Model> model = modelService.getModelById(id);

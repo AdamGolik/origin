@@ -9,12 +9,8 @@ import java.util.List;
 
 public interface ModelRepository extends JpaRepository<Model, Long> {
 
-    @Query("SELECT m FROM Model m WHERE m.grade LIKE %:grade%")
-    List<Model> findByGradeContains(@Param("grade") String grade);
-
-    @Query("SELECT m FROM Model m WHERE m.name LIKE %:name%")
-    List<Model> findByNameContains(@Param("name") String name);
-
-    @Query("SELECT m FROM Model m WHERE m.lastname LIKE %:lastName%")
-    List<Model> findByLastNameContains(@Param("lastName") String lastName);
+    @Query("SELECT m FROM Model m WHERE m.grade LIKE %:search% " +
+            "OR m.name LIKE %:search% " +
+            "OR m.lastname LIKE %:search%")
+    List<Model> findByAnyFieldContains(@Param("search") String search);
 }

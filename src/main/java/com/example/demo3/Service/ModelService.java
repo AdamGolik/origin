@@ -44,16 +44,7 @@ public class ModelService {
         }
     }
 
-    public Iterable<Model> getFilteredModels(String filter, String field) {
-        switch (field.toLowerCase()) {
-            case "grade":
-                return modelRepository.findByGradeContains(filter);
-            case "name":
-                return modelRepository.findByNameContains(filter);
-            case "lastname":
-                return modelRepository.findByLastNameContains(filter);
-            default:
-                throw new IllegalArgumentException("Invalid field: " + field);
-        }
+    public Iterable<Model> getFilteredModels(String filter) {
+        return modelRepository.findByAnyFieldContains(filter);
     }
 }

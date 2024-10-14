@@ -19,7 +19,7 @@ public class ModelController {
     public ResponseEntity<Iterable<Model>> getAllModels(@RequestParam(required = false) String filter) {
         Iterable<Model> models;
         if (filter != null) {
-            models = modelService.getFilteredModels(filter, "name"); // Domyślnie filtrowanie po nazwie jeśli pole nie jest podane
+            models = modelService.getFilteredModels(filter);
         } else {
             models = modelService.getAllModels();
         }
@@ -58,8 +58,8 @@ public class ModelController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<Iterable<Model>> filterModels(@RequestParam String search, @RequestParam String field) {
-        Iterable<Model> models = modelService.getFilteredModels(search, field);
+    public ResponseEntity<Iterable<Model>> filterModels(@RequestParam String search) {
+        Iterable<Model> models = modelService.getFilteredModels(search);
         return ResponseEntity.ok(models);
     }
 }
